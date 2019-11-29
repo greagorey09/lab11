@@ -120,7 +120,6 @@ class InvService implements Runnable, Protocol
 					if (thresh != "")
 					{
 						out.writeInt(Protocol.SUCCEED);
-						System.out.println(thresh);
 						out.writeUTF(thresh);
 					}
 					else
