@@ -65,7 +65,7 @@ public class Client implements Runnable, Protocol
 				catch (Exception e) { }
 				return tempStr;
 			};
-			this.socket = new Socket("localhost", Protocol.PORT);	
+			this.socket = new Socket("localhost", 12000);	
 			this.out = new DataOutputStream(socket.getOutputStream());
 			this.in = new DataInputStream(socket.getInputStream());
 		}
@@ -142,7 +142,7 @@ public class Client implements Runnable, Protocol
 					readableResponse = protocol.m_serverResponse(Protocol.TAKE_ITEM, in.readInt(), in);
 					break;
 				case Protocol.GET_THRESHOLD:
-					var tempInt = rand.nextInt(6);
+					var tempInt = rand.nextInt(35); //random int between 0-35
 					out.writeInt(Protocol.GET_THRESHOLD);
 					out.writeInt(tempInt);
 					out.flush();

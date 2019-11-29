@@ -97,12 +97,12 @@ public class Inventory
 		lock.lock();
 		String result="";
 		Iterator<String> keySetIterator = inventory.keySet().iterator();
-		while(keySetIterator.hasNext())
+		while (keySetIterator.hasNext())
 		{
 			String key = keySetIterator.next();
 			Integer value = inventory.get(key);
-			if(value<=threshold)
-				result +="["+key+","+value+"] ";
+			if(value <= threshold)
+				result += "[" + key + "," + value + "] ";
 		}
 		lock.unlock();
 		return result;
