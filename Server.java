@@ -7,19 +7,11 @@
 * Self explanatory variables and parameters will not be documented as they are, "self-explanatory".
 */
 
-/*
-*			FOR GREG
-* After the last client disconnects from the server, server doesn't print "Waiting for clients to connect...". 
-* However still waits for clients to connect.
-* 
-*/
-
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
-
 
 public class Server
 {  
