@@ -65,7 +65,7 @@ public class Client implements Runnable, Protocol
 				catch (Exception e) { }
 				return tempStr;
 			};
-			this.socket = new Socket("localhost", 12000);	
+			this.socket = new Socket("localhost", Protocol.PORT);	
 			this.out = new DataOutputStream(socket.getOutputStream());
 			this.in = new DataInputStream(socket.getInputStream());
 		}
