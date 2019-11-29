@@ -73,7 +73,8 @@ class InvService implements Runnable, Protocol
 		int amt;
 		int check;
 
-		while (command != Protocol.QUIT)
+		outerWhile : 
+		while (true)
 		{  
 			command = in.readInt();
 			switch (command)
@@ -129,28 +130,25 @@ class InvService implements Runnable, Protocol
 					out.flush();
 					break;
 				case Protocol.QUIT:
-					out.writeInt(Protocol.SUCCEED);
-					out.flush();
-					break;
+					try
+					{
+						out.writeInt(Protocol.SUCCEED);
+						out.flush();
+						serverSocket.close();
+						System.out.println("Closing the connection with the client.");
+						Thread.currentThread().interrupt();
+						break outerWhile;
+					}
+					catch (Exception e)
+					{
+						out.writeInt(Protocol.FAILED);
+						out.flush();
+						System.out.println("Error! Failed to disconnect from client");
+					}
 				default:
 					out.writeInt(Protocol.FAILED);
 					out.flush();
 					break;
-			}
-		}
-		if (command == Protocol.QUIT)
-		{
-			try
-			{
-				out.writeInt(Protocol.SUCCEED);
-				out.flush();
-				serverSocket.close();
-				System.out.println("Closing the connection with the client.");
-				Thread.currentThread().interrupt();
-			}
-			catch (IOException exception)
-			{
-				System.out.println("Error! Failed to disconnect from client");
 			}
 		}
 	}
