@@ -5,6 +5,7 @@
 * @author Greagorey Markerian
 * Student ID: 100338209
 * Self explanatory variables and parameters will not be documented as they are, "self-explanatory".
+* This code is highly based off the example4 given to us by prof. Modifications were introduced for Inventory class
 */
 
 import java.io.DataInputStream;
@@ -13,6 +14,9 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+/**
+ * Seperate class, when client is connected will create a new object Inservice and starts the thread
+ */
 public class Server
 {  
 	public static void main(String[] args) throws IOException
@@ -44,7 +48,9 @@ class InvService implements Runnable, Protocol
 		this.serverSocket = serverSocket;
 		this.inv = inv;
 	}
-
+	/**
+	 * runs the thread by calling the doInventory() method
+	 */
 	public void run()
 	{
 		try
@@ -65,7 +71,10 @@ class InvService implements Runnable, Protocol
 			catch (Exception e) { }
 		} 
 	}
-
+	/**
+	 * method uses switch cases to recieve protocol from client. Depending on what was sent
+	 * will call iventory methods and return the values to client
+	 */
 	public void doInventory() throws IOException
 	{      
 		int command = 0;

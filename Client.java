@@ -20,6 +20,9 @@ public class Client implements Runnable, Protocol
 	private DataInputStream in;
 	private ProtocolFunctional protocol;
 
+	/**
+	 * Creates 5 different clients
+	 */
 	public static void main(String[] args)
 	{
 		for (int i = 0; i < 5; i++)
@@ -29,7 +32,9 @@ public class Client implements Runnable, Protocol
 			t.start();
 		}
 	}
-
+	/**
+	 * Client recieves data from server of a succeed or a fail, along with its data. Will print the data
+	 */
 	public Client()
 	{	
 		try
@@ -74,7 +79,10 @@ public class Client implements Runnable, Protocol
 			System.out.println("Error! Can't connect to the server.");
 		}
 	}
-
+	/**
+	 * Run method here uses random to clientAction method to test for all the commands. As well as sleep to 
+	 * mimic client server delays.
+	 */
 	public void run()
 	{
 		Random r = new Random();
@@ -106,7 +114,10 @@ public class Client implements Runnable, Protocol
 			}
 		}
 	}
-
+	/**
+	 * Method uses switch commands. For whatever protocol case, will send data to server of what is needed along with the parameters
+	 * for specific method. 
+	 */
 	public void clientActions(int command) throws IOException
 	{
 		Random rand = new Random();
